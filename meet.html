@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Meet</h1>
+    <input type="text" id="searchInput" placeholder="Search users..." onkeyup="loadSearchResult()"/>
+    <div id="userContainer"></div>
+
+    <script>
+      const users = [
+        "Alice",
+        "Bob",
+        "Charlie",
+        "Diana",
+        "Eve",
+        "Frank",
+        "Robert",
+      ];
+      const userContainer = document.getElementById("userContainer");
+      const searchInput = document.getElementById("searchInput");
+
+      function renderUsers(userList) {
+        userContainer.innerHTML = ""; 
+        userList.forEach((user) => {
+          userContainer.innerHTML += `<div class="userCard">${user}</div>`;
+        });
+      }
+
+      renderUsers(users);
+      function loadSearchResult() {
+        const inputElement = searchInput.value.toLowerCase();
+        const filteredUsers = users.filter((user) =>
+          user.toLowerCase().includes(inputElement)
+        );
+        renderUsers(filteredUsers);
+      }
+    </script>
+  </body>
+</html>
